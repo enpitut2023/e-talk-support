@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { Profile } from "./components/Profile";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -20,12 +20,7 @@ function App() {
   return (
     <>
       <h1>e-talk support</h1>
-      {users.map((user) => (
-        <div key={user.id}>
-          <h3>{user.name}</h3>
-          <div>{user.birthplace}</div>
-        </div>
-      ))}
+      <Profile uid="O7GCHyB6TdiR9C2FPWUS"></Profile>
     </>
   );
 }
