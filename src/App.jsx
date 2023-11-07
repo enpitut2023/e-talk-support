@@ -21,6 +21,7 @@ function App() {
     <>
       <h1>e-talk support</h1>
       <Profile uid="O7GCHyB6TdiR9C2FPWUS"></Profile>
+      <Profile uid="Skaoi6NC3P2Qu4PPfA0S"></Profile>
     </>
   );
 }
