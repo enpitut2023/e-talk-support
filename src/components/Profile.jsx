@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 // import "./App.css";
-import { db } from "../../firebase";
+import { db, storage } from "../../firebase";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
 
 export const Profile = (props) => {
   const [user, setUser] = useState({});
+  const [userImage, setUserImage] = useState({});
 
   const uid = props.uid;
 
@@ -15,8 +17,11 @@ export const Profile = (props) => {
 
     const userDocumentRef = doc(db, "users", uid);
     getDoc(userDocumentRef).then((snap) => {
-      console.log(snap.data());
       setUser(snap.data());
+      const userImageRef = ref(storage, snap.data().image);
+      getDownloadURL(userImageRef).then((url) => {
+        setUserImage(url);
+      });
     });
 
     // getDocs(usersCollectionRef).then((querySnapshot) => {
@@ -26,8 +31,10 @@ export const Profile = (props) => {
 
   return (
     <>
+      <img src={userImage} />
       <div>{user.name}</div>
       <div>{user.birthplace}</div>
+      <div>{user.hobby}</div>
     </>
   );
 };
