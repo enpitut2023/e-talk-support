@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { db, storage } from "../../firebase";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { Profile } from "./Profile";
+import { Form } from "./Form";
 
 export const Meeting = (props) => {
   const [meeting, setMeeting] = useState({}); // 取得したmeetingデータの入れ物
@@ -33,6 +34,7 @@ export const Meeting = (props) => {
             );
           })}
       </div>
+      <Form></Form>
     </div>
   );
 };
