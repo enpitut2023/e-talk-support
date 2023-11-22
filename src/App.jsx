@@ -4,6 +4,7 @@ import "./App.css";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Meeting } from "./components/Meeting";
+import { Form } from "./components/Form";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -21,6 +22,7 @@ function App() {
     <div>
       <h1>e-talk support</h1>
       <Meeting meetingId="CuqhDPfaaApE15piGpP2"></Meeting>
+      <Form></Form>
     </div>
   );
 }
