@@ -8,15 +8,16 @@ export const Profile = (props) => {
   const [user, setUser] = useState({});
   const [userImage, setUserImage] = useState({});
 
-  const uid = props.uid;
+  // const uid = props.uid; // uidで取ってくる場合はこっちを使う
+  const [userRef, setUserRef] = useState(props.userRef);
 
   useEffect(() => {
     // const usersCollectionRef = collection(db, "users");
     // const user_doc = usersCollectionRef.doc(uid);
     // const user_data = user_doc.data();
 
-    const userDocumentRef = doc(db, "users", uid);
-    getDoc(userDocumentRef).then((snap) => {
+    // const userDocumentRef = doc(db, "users", uid);
+    getDoc(userRef).then((snap) => {
       setUser(snap.data());
       const userImageRef = ref(storage, snap.data().image);
       getDownloadURL(userImageRef).then((url) => {
@@ -27,14 +28,14 @@ export const Profile = (props) => {
     // getDocs(usersCollectionRef).then((querySnapshot) => {
     //   setUser(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     // });
-  }, [uid]);
+  }, []);
 
   return (
-    <>
+    <div>
       <img src={userImage} />
       <div>{user.name}</div>
       <div>{user.birthplace}</div>
       <div>{user.hobby}</div>
-    </>
+    </div>
   );
 };

@@ -3,7 +3,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { Profile } from "./components/Profile";
+import { Meeting } from "./components/Meeting";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -18,11 +18,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div>
       <h1>e-talk support</h1>
-      <Profile uid="O7GCHyB6TdiR9C2FPWUS"></Profile>
-      <Profile uid="Skaoi6NC3P2Qu4PPfA0S"></Profile>
-    </>
+      <Meeting meetingId="CuqhDPfaaApE15piGpP2"></Meeting>
+    </div>
   );
 }
 
