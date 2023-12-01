@@ -39,7 +39,6 @@ export const Profile = (props) => {
     <div>
       {/* <img src={userImage} /> */}
       <div>{user.name}</div>
-      <div>{user.name}</div>
       <div>{user.birthPlace}</div>
       <div>{user.affliation}</div>
       <div>{user.hobby}</div>
