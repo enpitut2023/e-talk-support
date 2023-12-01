@@ -18,7 +18,12 @@ export const Profile = (props) => {
 
     // const userDocumentRef = doc(db, "users", uid);
     getDoc(userRef).then((snap) => {
+      // なぜundefinedになるのかわからない。
+      if (snap.data() == undefined) {
+        return;
+      }
       setUser(snap.data());
+      console.log(snap.data());
       const userImageRef = ref(storage, snap.data().image);
       getDownloadURL(userImageRef).then((url) => {
         setUserImage(url);
@@ -32,10 +37,13 @@ export const Profile = (props) => {
 
   return (
     <div>
-      <img src={userImage} />
+      {/* <img src={userImage} /> */}
       <div>{user.name}</div>
-      <div>{user.birthplace}</div>
+      <div>{user.birthPlace}</div>
+      <div>{user.affliation}</div>
       <div>{user.hobby}</div>
+      <div>{user.talk}</div>
+      <div>{user.sns}</div>
     </div>
   );
 };

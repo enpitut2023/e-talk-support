@@ -4,6 +4,7 @@ import "./App.css";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Meeting } from "./components/Meeting";
+import { Form } from "./components/Form";
 
 function App() {
   const [users, setUsers] = useState([]);
