@@ -34,12 +34,6 @@ export const Form = (props) => {
     const talk = talkRef.current.value;
     const sns = snsRef.current.value;
 
-    // コンソールに出力
-    console.log("名前: ", name);
-    console.log("生年月日: ", birthDate);
-    console.log("趣味: ", hobby);
-    console.log("自由記述: ", freeText);
-
     const userData = {
       name: name,
       birthPlace: birthPlace,
