@@ -25,12 +25,11 @@ export const Meeting = (props) => {
       <div>
         {Array.isArray(meeting.users) &&
           meeting.users.map((data, index) => {
-            console.log(data);
             // 各値はuidでなくuserへのリファレンスであることに注意
             return (
               <div key={index}>
                 {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
-                <Profile userRef={data}></Profile>
+                <Profile userRef={data} meetingId={meetingId}></Profile>
               </div>
             );
           })}
