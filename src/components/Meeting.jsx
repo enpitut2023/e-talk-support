@@ -34,7 +34,7 @@ export const Meeting = (props) => {
             );
           })}
       </div>
-      <Form></Form>
+      <Form meetingId={meetingId}></Form>
     </div>
   );
 };
