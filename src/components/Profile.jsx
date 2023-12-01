@@ -27,26 +27,17 @@ export const Profile = (props) => {
   };
 
   useEffect(() => {
-    // const usersCollectionRef = collection(db, "users");
-    // const user_doc = usersCollectionRef.doc(uid);
-    // const user_data = user_doc.data();
-
-    // const userDocumentRef = doc(db, "users", uid);
     getDoc(userRef).then((snap) => {
       // なぜundefinedになるのかわからない。
       if (snap.data() == undefined) {
         return;
       }
       setUser(snap.data());
-      const userImageRef = ref(storage, snap.data().image);
-      getDownloadURL(userImageRef).then((url) => {
-        setUserImage(url);
-      });
+      // const userImageRef = ref(storage, snap.data().image);
+      // getDownloadURL(userImageRef).then((url) => {
+      //   setUserImage(url);
+      // });
     });
-
-    // getDocs(usersCollectionRef).then((querySnapshot) => {
-    //   setUser(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // });
   }, []);
 
   return (
