@@ -38,12 +38,14 @@ export const Profile = (props) => {
   return (
     <div>
       {/* <img src={userImage} /> */}
-      <div>{user.name}</div>
-      <div>{user.birthPlace}</div>
-      <div>{user.affliation}</div>
-      <div>{user.hobby}</div>
-      <div>{user.talk}</div>
-      <div>{user.sns}</div>
+      <hr></hr>
+      <div>名前：{user.name}</div>
+      <div>出身地：{user.birthPlace}</div>
+      <div>所属：{user.affliation}</div>
+      <div>趣味：{user.hobby}</div>
+      <div>話したいこと：{user.talk}</div>
+      <div>SNS{user.sns}</div>
+      <hr></hr>
     </div>
   );
 };
