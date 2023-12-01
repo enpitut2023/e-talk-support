@@ -1,29 +1,59 @@
 import { useState, useEffect, useRef } from "react";
 import { db, storage } from "../../firebase";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 
 export const Form = (props) => {
   // 各入力フィールド用のrefを作成
   const nameRef = useRef(null);
-  const birthDateRef = useRef(null);
+  const birthPlaceRef = useRef(null);
+  const affiliationRef = useRef(null);
   const hobbyRef = useRef(null);
-  const freeTextRef = useRef(null);
+  const talkRef = useRef(null);
+  const snsRef = useRef(null);
+
+  const userCollectionRef = collection(db, "users");
+  const meetingDocumentRef = doc(db, "meetings", props.meetingId);
 
   const handleSubmit = (event) => {
     event.preventDefault(); // フォームのデフォルト送信を防ぐ
 
     // refを使用して各フィールドの値を取得
     const name = nameRef.current.value;
-    const birthDate = birthDateRef.current.value;
+    const birthPlace = birthPlaceRef.current.value;
+    const affliation = affiliationRef.current.value;
     const hobby = hobbyRef.current.value;
-    const freeText = freeTextRef.current.value;
+    const talk = talkRef.current.value;
+    const sns = snsRef.current.value;
 
     // コンソールに出力
     console.log("名前: ", name);
     console.log("生年月日: ", birthDate);
     console.log("趣味: ", hobby);
     console.log("自由記述: ", freeText);
+
+    const userData = {
+      name: name,
+      birthPlace: birthPlace,
+      affliation: affliation,
+      hobby: hobby,
+      talk: talk,
+      sns: sns,
+    };
+
+    addDoc(userCollectionRef, userData).then((userRef) => {
+      updateDoc(meetingDocumentRef, {
+        users: arrayUnion(userRef),
+      });
+    });
   };
 
   return (
@@ -35,8 +65,13 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          生年月日：
-          <input type="date" name="birthDate" ref={birthDateRef} />
+          出身地：
+          <input type="text" name="birthPlace" ref={birthPlaceRef} />
+        </label>
+        <br />
+        <label>
+          所属：
+          <input type="text" name="affiliation" ref={affiliationRef} />
         </label>
         <br />
         <label>
@@ -45,8 +80,13 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          自由記述：
-          <input type="text" name="freeText" ref={freeTextRef} />
+          話したいこと：
+          <input type="text" name="freeText" ref={talkRef} />
+        </label>
+        <br />
+        <label>
+          SNS：
+          <input type="text" name="sns" ref={snsRef} />
         </label>
         <input type="submit" value="Submit" />
       </form>

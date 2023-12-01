@@ -22,7 +22,6 @@ function App() {
     <div>
       <h1>e-talk support</h1>
       <Meeting meetingId="CuqhDPfaaApE15piGpP2"></Meeting>
-      <Form></Form>
     </div>
   );
 }
