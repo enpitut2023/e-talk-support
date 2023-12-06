@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-// import "./App.css";
-import { db, storage } from "../../firebase";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { Profile } from "./Profile";
 import { Form } from "./Form";
 
 export const Meeting = (props) => {
+  const meetingId = props.meetingId; //propsの受け取り
+
   const [meeting, setMeeting] = useState({}); // 取得したmeetingデータの入れ物
 
-  const [meetingId, setMeetingId] = useState(props.meetingId);
-
-  // ユーザーを追加する関数、Formなど子コンポーネントにて利用
-  const addUser = (newUser) => {
+  // ユーザーリストからユーザーを追加・削除する関数、子コンポーネントにて利用
+  const addUserToList = (newUser) => {
     setMeeting((prevMeeting) => {
       const updatedMeeting = {
         ...prevMeeting,
@@ -20,7 +19,7 @@ export const Meeting = (props) => {
       return updatedMeeting;
     });
   };
-  const rmUser = (user) => {
+  const rmUserFromList = (user) => {
     setMeeting((prevMeeting) => ({
       ...prevMeeting,
       users: prevMeeting.users.filter((elem) => elem !== user),
@@ -29,9 +28,9 @@ export const Meeting = (props) => {
 
   useEffect(() => {
     // meetingデータの取得
-    const meetingDocumentRef = doc(db, "meetings", meetingId);
-    getDoc(meetingDocumentRef).then((snap) => {
-      setMeeting(snap.data());
+    const meetingDocRef = doc(db, "meetings", meetingId);
+    getDoc(meetingDocRef).then((doc) => {
+      setMeeting(doc.data());
     });
   }, []);
 
@@ -49,13 +48,13 @@ export const Meeting = (props) => {
                 <Profile
                   userRef={data}
                   meetingId={meetingId}
-                  rmUserFunc={rmUser}
+                  rmUserFromList={rmUserFromList}
                 ></Profile>
               </div>
             );
           })}
       </div>
-      <Form meetingId={meetingId} addUserFunc={addUser}></Form>
+      <Form meetingId={meetingId} addUserToList={addUserToList}></Form>
     </div>
   );
 };

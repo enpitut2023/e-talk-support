@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-// import "./App.css";
 import { db, storage } from "../../firebase";
 import {
-  collection,
-  getDocs,
   doc,
   getDoc,
   updateDoc,
@@ -13,31 +10,30 @@ import {
 import { getDownloadURL, ref } from "firebase/storage";
 
 export const Profile = (props) => {
-  // 親コンポネントの更新の為の関数の受け取り
-  const rmUser = props.rmUserFunc;
+  const rmUserFromList = props.rmUserFromList; // 親コンポネントの更新の為の関数の受け取り
+  const userRef = props.userRef;
+  const meetingDocRef = doc(db, "meetings", props.meetingId);
 
-  const [user, setUser] = useState({});
-  const [userImage, setUserImage] = useState({});
+  const [userData, setUserData] = useState({});
+  // const [userImage, setUserImage] = useState({});
 
-  // const uid = props.uid; // uidで取ってくる場合はこっちを使う
-  const [userRef, setUserRef] = useState(props.userRef);
-  const meetingDocumentRef = doc(db, "meetings", props.meetingId);
   const deleteUser = () => {
-    updateDoc(meetingDocumentRef, {
+    updateDoc(meetingDocRef, {
       users: arrayRemove(userRef),
     });
     deleteDoc(userRef);
-    rmUser(userRef);
+    rmUserFromList(userRef);
   };
 
   useEffect(() => {
-    getDoc(userRef).then((snap) => {
+    getDoc(userRef).then((doc) => {
       // なぜundefinedになるのかわからない。
-      if (snap.data() == undefined) {
+      if (doc.data() == undefined) {
         return;
       }
-      setUser(snap.data());
-      // const userImageRef = ref(storage, snap.data().image);
+      setUserData(doc.data());
+      //imageの取得
+      // const userImageRef = ref(storage, doc.data().image);
       // getDownloadURL(userImageRef).then((url) => {
       //   setUserImage(url);
       // });
@@ -48,12 +44,12 @@ export const Profile = (props) => {
     <div>
       {/* <img src={userImage} /> */}
       <hr></hr>
-      <div>名前：{user.name}</div>
-      <div>出身地：{user.birthPlace}</div>
-      <div>所属：{user.affliation}</div>
-      <div>趣味：{user.hobby}</div>
-      <div>話したいこと：{user.talk}</div>
-      <div>SNS{user.sns}</div>
+      <div>名前：{userData.name}</div>
+      <div>出身地：{userData.birthPlace}</div>
+      <div>所属：{userData.affliation}</div>
+      <div>趣味：{userData.hobby}</div>
+      <div>話したいこと：{userData.talk}</div>
+      <div>SNS：{userData.sns}</div>
       <button onClick={deleteUser}>delete</button>
       <hr></hr>
     </div>

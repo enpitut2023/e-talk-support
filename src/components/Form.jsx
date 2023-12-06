@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import { db, storage } from "../../firebase";
+import { db } from "../../firebase";
 import {
   collection,
-  getDocs,
   doc,
-  getDoc,
   addDoc,
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { getDownloadURL, ref } from "firebase/storage";
 
 export const Form = (props) => {
   // 親コンポネントのユーザーリストを更新のための関数を受け取り
-  const addUser = props.addUserFunc;
+  const addUserToList = props.addUserToList;
+  const meetingDocRef = doc(db, "meetings", props.meetingId);
+  const userCollectionRef = collection(db, "users");
 
   // 各入力フィールド用のrefを作成
   const nameRef = useRef(null);
@@ -22,9 +21,6 @@ export const Form = (props) => {
   const hobbyRef = useRef(null);
   const talkRef = useRef(null);
   const snsRef = useRef(null);
-
-  const userCollectionRef = collection(db, "users");
-  const meetingDocumentRef = doc(db, "meetings", props.meetingId);
 
   const handleSubmit = (event) => {
     event.preventDefault(); // フォームのデフォルト送信を防ぐ
@@ -47,10 +43,10 @@ export const Form = (props) => {
     };
 
     addDoc(userCollectionRef, userData).then((userRef) => {
-      updateDoc(meetingDocumentRef, {
+      updateDoc(meetingDocRef, {
         users: arrayUnion(userRef),
       });
-      addUser(userRef);
+      addUserToList(userRef);
     });
   };
 
