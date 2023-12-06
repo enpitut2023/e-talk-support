@@ -12,6 +12,9 @@ import {
 import { getDownloadURL, ref } from "firebase/storage";
 
 export const Form = (props) => {
+  // 親コンポネントのユーザーリストを更新のための関数を受け取り
+  const addUser = props.addUserFunc;
+
   // 各入力フィールド用のrefを作成
   const nameRef = useRef(null);
   const birthPlaceRef = useRef(null);
@@ -47,6 +50,7 @@ export const Form = (props) => {
       updateDoc(meetingDocumentRef, {
         users: arrayUnion(userRef),
       });
+      addUser(userRef);
     });
   };
 
