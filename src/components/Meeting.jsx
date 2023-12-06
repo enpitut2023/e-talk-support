@@ -10,6 +10,23 @@ export const Meeting = (props) => {
 
   const [meetingId, setMeetingId] = useState(props.meetingId);
 
+  // ユーザーを追加する関数、Formなど子コンポーネントにて利用
+  const addUser = (newUser) => {
+    setMeeting((prevMeeting) => {
+      const updatedMeeting = {
+        ...prevMeeting,
+        users: [...prevMeeting.users, newUser],
+      };
+      return updatedMeeting;
+    });
+  };
+  const rmUser = (user) => {
+    setMeeting((prevMeeting) => ({
+      ...prevMeeting,
+      users: prevMeeting.users.filter((elem) => elem !== user),
+    }));
+  };
+
   useEffect(() => {
     // meetingデータの取得
     const meetingDocumentRef = doc(db, "meetings", meetingId);
@@ -29,12 +46,16 @@ export const Meeting = (props) => {
             return (
               <div key={index}>
                 {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
-                <Profile userRef={data} meetingId={meetingId}></Profile>
+                <Profile
+                  userRef={data}
+                  meetingId={meetingId}
+                  rmUserFunc={rmUser}
+                ></Profile>
               </div>
             );
           })}
       </div>
-      <Form meetingId={meetingId}></Form>
+      <Form meetingId={meetingId} addUserFunc={addUser}></Form>
     </div>
   );
 };
