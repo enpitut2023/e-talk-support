@@ -13,6 +13,9 @@ import {
 import { getDownloadURL, ref } from "firebase/storage";
 
 export const Profile = (props) => {
+  // 親コンポネントの更新の為の関数の受け取り
+  const rmUser = props.rmUserFunc;
+
   const [user, setUser] = useState({});
   const [userImage, setUserImage] = useState({});
 
@@ -24,6 +27,7 @@ export const Profile = (props) => {
       users: arrayRemove(userRef),
     });
     deleteDoc(userRef);
+    rmUser(userRef);
   };
 
   useEffect(() => {

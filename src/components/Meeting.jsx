@@ -20,6 +20,12 @@ export const Meeting = (props) => {
       return updatedMeeting;
     });
   };
+  const rmUser = (user) => {
+    setMeeting((prevMeeting) => ({
+      ...prevMeeting,
+      users: prevMeeting.users.filter((elem) => elem !== user),
+    }));
+  };
 
   useEffect(() => {
     // meetingデータの取得
@@ -40,7 +46,11 @@ export const Meeting = (props) => {
             return (
               <div key={index}>
                 {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
-                <Profile userRef={data} meetingId={meetingId}></Profile>
+                <Profile
+                  userRef={data}
+                  meetingId={meetingId}
+                  rmUserFunc={rmUser}
+                ></Profile>
               </div>
             );
           })}
