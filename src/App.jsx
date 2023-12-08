@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Meeting } from "./components/Meeting";
+import { Home } from "./components/Home";
 
 const App = () => {
   return (
@@ -9,7 +9,8 @@ const App = () => {
       <h1>e-talk support</h1>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/:meetingId" element={<Meeting />}></Route>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route path="/:meetingId" element={<Meeting />}></Route>
         </Routes>
       </BrowserRouter>
       {/* <Meeting meetingId="BLcYePnoqOCCluUFcwQZ"></Meeting>
