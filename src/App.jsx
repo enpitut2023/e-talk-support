@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Meeting } from "./components/Meeting";
-import { Home } from "./components/Home";
+import { EnterMeeting } from "./components/EnterMeeting";
 import { MakeMeeting } from "./components/MakeMeeting";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <h1>e-talk support</h1>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/" element={<EnterMeeting />}></Route>
           <Route path="/:meetingId" element={<Meeting />}></Route>
         </Routes>
       </BrowserRouter>
