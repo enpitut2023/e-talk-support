@@ -3,9 +3,11 @@ import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { Profile } from "./Profile";
 import { Form } from "./Form";
+import { useParams } from "react-router-dom";
 
 export const Meeting = (props) => {
-  const meetingId = props.meetingId; //propsの受け取り
+  // const meetingId = props.meetingId; //propsの受け取り
+  const { meetingId } = useParams();
 
   const [meeting, setMeeting] = useState({}); // 取得したmeetingデータの入れ物
 
