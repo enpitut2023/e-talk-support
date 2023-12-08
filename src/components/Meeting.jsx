@@ -51,12 +51,12 @@ export const Meeting = (props) => {
                   userRef={data}
                   meetingId={meetingId}
                   rmUserFromList={rmUserFromList}
-                ></Profile>
+                />
               </div>
             );
           })}
       </div>
-      <Form meetingId={meetingId} addUserToList={addUserToList}></Form>
+      <Form meetingId={meetingId} addUserToList={addUserToList} />
     </div>
   );
 };
