@@ -6,6 +6,7 @@ import {
   updateDoc,
   arrayRemove,
   deleteDoc,
+  increment,
 } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 
@@ -23,6 +24,24 @@ export const Profile = (props) => {
     });
     deleteDoc(userRef);
     rmUserFromList(userRef);
+  };
+
+  const favName = (field) => {
+    updateDoc(userRef, {
+      name: {
+        value: userData.name["value"],
+        fav: userData.name["fav"] + 1,
+      },
+    });
+    setUserData((prevUserData) => {
+      return {
+        ...prevUserData,
+        name: {
+          value: prevUserData.name["value"],
+          fav: prevUserData.name["fav"] + 1,
+        },
+      };
+    });
   };
 
   useEffect(() => {
@@ -44,12 +63,38 @@ export const Profile = (props) => {
     <div>
       {/* <img src={userImage} /> */}
       <hr></hr>
-      <div>名前：{userData.name}</div>
-      <div>出身地：{userData.birthPlace}</div>
-      <div>所属：{userData.affliation}</div>
-      <div>趣味：{userData.hobby}</div>
-      <div>話したいこと：{userData.talk}</div>
-      <div>SNS：{userData.sns}</div>
+      {userData.name != null && (
+        <div>
+          <div>名前：{userData.name["value"]}</div>
+          <button onClick={favName}>いいね{userData.name["fav"]}</button>
+        </div>
+      )}
+      <div>
+        <div>
+          出身地：{userData.birthPlace != null && userData.birthPlace["value"]}
+        </div>
+        {/* <button>いいね{userData.birthPlace}</button> */}
+      </div>
+      <div>
+        <div>
+          所属：{userData.afflication != null && userData.affliation["value"]}
+        </div>
+        {/* <button>いいね{userData.affliation}</button> */}
+      </div>
+      <div>
+        <div>趣味：{userData.hobby != null && userData.hobby["value"]}</div>
+        {/* <button>いいね{userData.hobby}</button> */}
+      </div>
+      <div>
+        <div>
+          話したいこと：{userData.talk != null && userData.talk["value"]}
+        </div>
+        {/* <button>いいね{userData.talk}</button> */}
+      </div>
+      <div>
+        <div>SNS：{userData.sns != null && userData.sns["value"]}</div>
+        {/* <button>いいね{userData.sns}</button> */}
+      </div>
       <button onClick={deleteUser}>delete</button>
       <hr></hr>
     </div>
