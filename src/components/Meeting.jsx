@@ -14,19 +14,21 @@ export const Meeting = (props) => {
   // ユーザーリストからユーザーを追加・削除する関数、子コンポーネントにて利用
   const addUserToList = (newUser) => {
     setMeeting((prevMeeting) => {
-      const updatedMeeting = {
-        //シャローコピーなので修正すべき
-        ...prevMeeting,
-        users: [...prevMeeting.users, newUser],
-      };
+      const updatedMeeting = JSON.parse(JSON.stringify(prevMeeting));
+      updatedMeeting.users.push(newUser);
       return updatedMeeting;
     });
   };
   const rmUserFromList = (user) => {
-    setMeeting((prevMeeting) => ({
-      ...prevMeeting,
-      users: prevMeeting.users.filter((elem) => elem !== user),
-    }));
+    setMeeting((prevMeeting) => {
+      const newMeeting = JSON.parse(JSON.stringify(prevMeeting));
+      newMeeting.users.splice(newMeeting.users.indexOf(user), 1);
+      return newMeeting;
+      // return {
+      //   ...prevMeeting,
+      //   users: prevMeeting.users.filter((elem) => elem !== user),
+      // }
+    });
   };
 
   useEffect(() => {

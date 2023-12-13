@@ -21,9 +21,6 @@ const App = () => {
         />
         <Route path="/:meetingId" element={<Meeting />} />
       </Routes>
-      {/* <Meeting meetingId="BLcYePnoqOCCluUFcwQZ"></Meeting>
-      <Meeting meetingId="h33Kj2ntEkv7QnopygGY"></Meeting>
-      <Meeting meetingId="CuqhDPfaaApE15piGpP2"></Meeting> */}
     </div>
   );
 };
