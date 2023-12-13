@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Home = (props) => {
+export const EnterMeeting = (props) => {
   const meetingRef = useRef("");
   const navigate = useNavigate();
 
