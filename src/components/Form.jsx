@@ -34,12 +34,30 @@ export const Form = (props) => {
     const sns = snsRef.current.value;
 
     const userData = {
-      name: name,
-      birthPlace: birthPlace,
-      affliation: affliation,
-      hobby: hobby,
-      talk: talk,
-      sns: sns,
+      name: {
+        value: name,
+        fav: 0,
+      },
+      birthPlace: {
+        value: birthPlace,
+        fav: 0,
+      },
+      affliation: {
+        value: affliation,
+        fav: 0,
+      },
+      hobby: {
+        value: hobby,
+        fav: 0,
+      },
+      talk: {
+        value: talk,
+        fav: 0,
+      },
+      sns: {
+        value: sns,
+        fav: 0,
+      },
     };
 
     addDoc(userCollectionRef, userData).then((userRef) => {
