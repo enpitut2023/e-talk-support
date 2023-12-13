@@ -15,6 +15,7 @@ export const Meeting = (props) => {
   const addUserToList = (newUser) => {
     setMeeting((prevMeeting) => {
       const updatedMeeting = {
+        //シャローコピーなので修正すべき
         ...prevMeeting,
         users: [...prevMeeting.users, newUser],
       };

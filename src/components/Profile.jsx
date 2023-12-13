@@ -27,20 +27,16 @@ export const Profile = (props) => {
   };
 
   //いいねを押したときの関数
-  const favName = (field) => {
+  const constFav = (field) => {
     //backend
     updateDoc(userRef, {
-      "name.fav": increment(1),
+      [`${field}.fav`]: increment(1),
     });
     //frontend
     setUserData((prevUserData) => {
-      return {
-        ...prevUserData,
-        name: {
-          value: prevUserData.name.value,
-          fav: prevUserData.name.fav + 1,
-        },
-      };
+      const newUserData = JSON.parse(JSON.stringify(prevUserData)); //ディープコピー
+      newUserData[field].fav += 1;
+      return newUserData;
     });
   };
 
@@ -63,27 +59,39 @@ export const Profile = (props) => {
           {/* <img src={userImage} /> */}
           <div>
             <div>名前：{userData.name.value}</div>
-            <button onClick={favName}>いいね{userData.name.fav}</button>
+            <button onClick={() => constFav("name")}>
+              いいね{userData.name.fav}
+            </button>
           </div>
           <div>
             <div>出身地：{userData.birthPlace.value}</div>
-            {/* <button>いいね{userData.birthPlace}</button> */}
+            <button onClick={() => constFav("birthPlace")}>
+              いいね{userData.birthPlace.fav}
+            </button>
           </div>
           <div>
             <div>所属：{userData.affliation.value}</div>
-            {/* <button>いいね{userData.affliation}</button> */}
+            <button onClick={() => constFav("affliation")}>
+              いいね{userData.affliation.fav}
+            </button>
           </div>
           <div>
             <div>趣味：{userData.hobby.value}</div>
-            {/* <button>いいね{userData.hobby}</button> */}
+            <button onClick={() => constFav("hobby")}>
+              いいね{userData.hobby.fav}
+            </button>
           </div>
           <div>
             <div>話したいこと：{userData.talk.value}</div>
-            {/* <button>いいね{userData.talk}</button> */}
+            <button onClick={() => constFav("talk")}>
+              いいね{userData.talk.fav}
+            </button>
           </div>
           <div>
             <div>SNS：{userData.sns.value}</div>
-            {/* <button>いいね{userData.sns}</button> */}
+            <button onClick={() => constFav("sns")}>
+              いいね{userData.sns.fav}
+            </button>
           </div>
           <button onClick={deleteUser}>delete</button>
         </div>
