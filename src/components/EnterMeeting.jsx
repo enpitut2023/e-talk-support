@@ -12,11 +12,16 @@ export const EnterMeeting = (props) => {
   return (
     <div>
       <label>
-        Meeting ID
-        <input type="text" name="name" ref={meetingRef} />
+        e-talk ID：
+        <input
+          type="text"
+          name="name"
+          ref={meetingRef}
+          placeholder="例：abcde101010de234"
+        />
       </label>
       <br />
-      <button onClick={joinMeeting}>ミーティングに参加する</button>
+      <button onClick={joinMeeting}>チェックイン</button>
     </div>
   );
 };

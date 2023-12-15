@@ -32,25 +32,35 @@ export const MakeMeeting = (props) => {
 
   return (
     <div>
-      新しいミーティングの作成
+      e-talk IDの新規生成はこちら
       <form onSubmit={handleSubmit}>
         <label>
-          ミーティングの名前：
-          <input type="text" name="name" ref={nameRef} />
+          会議名：
+          <input
+            type="text"
+            name="name"
+            ref={nameRef}
+            placeholder="例：◯◯社　インターンシップ内定懇親会"
+          />
         </label>
         <br />
         <label>
-          ミーティングのURL：
-          <input type="text" name="url" ref={urlRef} />
+          会議URL：
+          <input
+            type="text"
+            name="url"
+            ref={urlRef}
+            placeholder="例：https://wwwwwww.zoooooom/abcdefgh"
+          />
         </label>
         <br />
         <input type="submit" value="作成" />
       </form>
       {meetingId && (
         <div>
-          新しいミーティングのID：{meetingId}
+          e-talk ID：{meetingId}
           <br />
-          新しいミーティングのURL：
+          作成されたメンバールームの招待URL：
           <Link
             to={`/${meetingId}`}
           >{`${window.location.origin}/${meetingId}`}</Link>

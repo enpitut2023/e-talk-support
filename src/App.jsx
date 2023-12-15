@@ -8,6 +8,9 @@ const App = () => {
   return (
     <div>
       <h1>e-talk support</h1>
+      <h5>
+        e-talkサポートは、ミーティングの開始前に参加者のプロフィールを確認できるサービスです
+      </h5>
       <Routes>
         <Route
           exact
@@ -15,6 +18,9 @@ const App = () => {
           element={
             <div>
               <EnterMeeting />
+              <br />
+              <br />
+              <br />
               <MakeMeeting />
             </div>
           }
