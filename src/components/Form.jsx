@@ -17,7 +17,7 @@ export const Form = (props) => {
   // 各入力フィールド用のrefを作成
   const nameRef = useRef(null);
   const birthPlaceRef = useRef(null);
-  const affiliationRef = useRef(null);
+  const affliationRef = useRef(null);
   const hobbyRef = useRef(null);
   const talkRef = useRef(null);
   const snsRef = useRef(null);
@@ -28,7 +28,7 @@ export const Form = (props) => {
     // refを使用して各フィールドの値を取得
     const name = nameRef.current.value;
     const birthPlace = birthPlaceRef.current.value;
-    const affliation = affiliationRef.current.value;
+    const affliation = affliationRef.current.value;
     const hobby = hobbyRef.current.value;
     const talk = talkRef.current.value;
     const sns = snsRef.current.value;
@@ -83,7 +83,7 @@ export const Form = (props) => {
         <br />
         <label>
           所属：
-          <input type="text" name="affiliation" ref={affiliationRef} />
+          <input type="text" name="affliation" ref={affliationRef} />
         </label>
         <br />
         <label>
