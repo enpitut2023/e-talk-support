@@ -48,17 +48,22 @@ export const Meeting = (props) => {
           meeting.users.map((data, index) => {
             // 各値はuidでなくuserへのリファレンスであることに注意
             return (
-              <div key={index}>
-                {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
-                <Profile
-                  userRef={data}
-                  meetingId={meetingId}
-                  rmUserFromList={rmUserFromList}
-                />
-              </div>
+              <ul class="CardList">
+                <li>
+                  <div key={index}>
+                    {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
+                    <Profile
+                      userRef={data}
+                      meetingId={meetingId}
+                      rmUserFromList={rmUserFromList}
+                    />
+                  </div>
+                </li>
+              </ul>
             );
           })}
       </div>
+      <hr></hr>
       <Form meetingId={meetingId} addUserToList={addUserToList} />
     </div>
   );
