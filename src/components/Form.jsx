@@ -70,6 +70,7 @@ export const Form = (props) => {
 
   return (
     <div>
+      あなたのユーザー情報を登録
       <form onSubmit={handleSubmit}>
         <label>
           名前：
