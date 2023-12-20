@@ -60,41 +60,50 @@ export const Profile = (props) => {
             {/* <img src={userImage} /> */}
             <div>
               <div>{userData.name.value}</div>
-              <button onClick={() => constFav("name")}>
-                いいね{userData.name.fav}
-              </button>
             </div>
             <div>
               <div>出身地：{userData.birthPlace.value}</div>
-              <button onClick={() => constFav("birthPlace")}>
-                いいね{userData.birthPlace.fav}
+              <button
+                class="small-button"
+                onClick={() => constFav("birthPlace")}
+              >
+                気になる {userData.birthPlace.fav}
               </button>
             </div>
             <div>
               <div>所属：{userData.affliation.value}</div>
-              <button onClick={() => constFav("affliation")}>
-                いいね{userData.affliation.fav}
+              <button
+                class="small-button"
+                onClick={() => constFav("affliation")}
+              >
+                気になる {userData.affliation.fav}
               </button>
             </div>
             <div>
               <div>趣味：{userData.hobby.value}</div>
-              <button onClick={() => constFav("hobby")}>
-                いいね{userData.hobby.fav}
+              <button class="small-button" onClick={() => constFav("hobby")}>
+                気になる {userData.hobby.fav}
               </button>
             </div>
             <div>
               <div>話したいこと：{userData.talk.value}</div>
-              <button onClick={() => constFav("talk")}>
-                いいね{userData.talk.fav}
+              <button class="small-button" onClick={() => constFav("talk")}>
+                気になる {userData.talk.fav}
               </button>
             </div>
             <div>
               <div>SNS：{userData.sns.value}</div>
-              <button onClick={() => constFav("sns")}>
-                いいね{userData.sns.fav}
+              <button class="small-button" onClick={() => constFav("sns")}>
+                気になる {userData.sns.fav}
               </button>
             </div>
-            <button onClick={deleteUser}>ユーザーを削除</button>
+            <div>
+              <br />
+              <button class="large-button" Click={deleteUser}>
+                ユーザーを削除
+              </button>
+              <br />
+            </div>
           </div>
         )}
       </Card>
