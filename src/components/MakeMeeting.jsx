@@ -30,6 +30,10 @@ export const MakeMeeting = (props) => {
     });
   };
 
+  const copyToClipboard = async (text) => {
+    await navigator.clipboard.writeText(text);
+  };
+
   return (
     <div>
       e-talk IDの新規生成はこちら
@@ -59,11 +63,19 @@ export const MakeMeeting = (props) => {
       {meetingId && (
         <div>
           e-talk ID：{meetingId}
+          <button onClick={() => copyToClipboard(meetingId)}>copy</button>
           <br />
           作成されたメンバールームの招待URL：
           <Link
             to={`/${meetingId}`}
           >{`${window.location.origin}/${meetingId}`}</Link>
+          <button
+            onClick={() =>
+              copyToClipboard(`${window.location.origin}/${meetingId}`)
+            }
+          >
+            copy
+          </button>
         </div>
       )}
     </div>
