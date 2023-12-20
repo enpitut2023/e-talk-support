@@ -4,12 +4,16 @@ import { doc, getDoc } from "firebase/firestore";
 import { Profile } from "./Profile";
 import { Form } from "./Form";
 import { useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { list } from "@firebase/storage";
 
 export const Meeting = (props) => {
   // const meetingId = props.meetingId; //propsの受け取り
   const { meetingId } = useParams();
 
   const [meeting, setMeeting] = useState({}); // 取得したmeetingデータの入れ物
+
+  const [cookies, setCookie, removeCookie] = useCookies(["meetings"]);
 
   // ユーザーリストからユーザーを追加・削除する関数、子コンポーネントにて利用
   const addUserToList = (newUser) => {
@@ -36,6 +40,23 @@ export const Meeting = (props) => {
     const meetingDocRef = doc(db, "meetings", meetingId);
     getDoc(meetingDocRef).then((doc) => {
       setMeeting(doc.data());
+
+      //cookieにmeetingIdを追加
+      //関数化したい、削除できるようにしたい
+      if (cookies.meetings) {
+        //cookieがあったら
+        const meetingList = cookies.meetings;
+        if (!meetingList.find((elem) => elem.id === meetingId)) {
+          console.log("2");
+          //cookieに当meetingのデータがなければ
+          meetingList.push({ id: meetingId, name: doc.data().name });
+        }
+        setCookie("meetings", meetingList, { maxAge: 315360000 });
+      } else {
+        setCookie("meetings", [{ id: meetingId, name: doc.data().name }], {
+          maxAge: 315360000,
+        });
+      }
     });
   }, []);
 
@@ -48,7 +69,7 @@ export const Meeting = (props) => {
           meeting.users.map((data, index) => {
             // 各値はuidでなくuserへのリファレンスであることに注意
             return (
-              <ul class="CardList">
+              <ul className="CardList" key={index}>
                 <li>
                   <div key={index}>
                     {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
