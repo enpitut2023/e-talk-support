@@ -50,7 +50,7 @@ export const MakeMeeting = (props) => {
             type="text"
             name="url"
             ref={urlRef}
-            placeholder="例：https://wwwwwww.zoooooom/abcdefgh"
+            placeholder="例：https://wwwwwww.zoom/abcdefgh"
           />
         </label>
         <br />
