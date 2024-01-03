@@ -1,16 +1,13 @@
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import "./App.css";
 import { Meeting } from "./components/Meeting";
 import { EnterMeeting } from "./components/EnterMeeting";
 import { MakeMeeting } from "./components/MakeMeeting";
-import { useCookies } from "react-cookie";
 
 const App = () => {
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie, updateCookie] = useCookies([
-    "meetings",
-  ]);
-  console.log(cookies.meetings);
+  const [cookies, setCookie, removeCookie] = useCookies(["meetings"]);
 
   const goTop = () => {
     navigate("/");
@@ -32,7 +29,6 @@ const App = () => {
                 参加しているユーザールーム
                 {cookies.meetings &&
                   cookies.meetings.map((meeting) => {
-                    updateCookie();
                     return (
                       <div key={meeting.id}>
                         <div>{meeting.name}</div>

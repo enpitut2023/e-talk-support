@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { Profile } from "./Profile";
-import { Form } from "./Form";
 import { useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { list } from "@firebase/storage";
+import { Profile } from "./Profile";
+import { Form } from "./Form";
+import { setMeetingCookie } from "../modules/cookie";
 
 export const Meeting = (props) => {
   // const meetingId = props.meetingId; //propsの受け取り
@@ -41,22 +42,7 @@ export const Meeting = (props) => {
     getDoc(meetingDocRef).then((doc) => {
       setMeeting(doc.data());
 
-      //cookieにmeetingIdを追加
-      //関数化したい、削除できるようにしたい
-      if (cookies.meetings) {
-        //cookieがあったら
-        const meetingList = cookies.meetings;
-        if (!meetingList.find((elem) => elem.id === meetingId)) {
-          console.log("2");
-          //cookieに当meetingのデータがなければ
-          meetingList.push({ id: meetingId, name: doc.data().name });
-        }
-        setCookie("meetings", meetingList, { maxAge: 315360000 });
-      } else {
-        setCookie("meetings", [{ id: meetingId, name: doc.data().name }], {
-          maxAge: 315360000,
-        });
-      }
+      setMeetingCookie(cookies, setCookie, meetingId, doc.data().name);
     });
   }, []);
 
