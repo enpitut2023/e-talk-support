@@ -7,6 +7,7 @@ import { list } from "@firebase/storage";
 import { Profile } from "./Profile";
 import { Form } from "./Form";
 import { setMeetingCookie } from "../modules/cookie";
+import { Grid, Card } from "@mui/material";
 
 export const Meeting = (props) => {
   // const meetingId = props.meetingId; //propsの受け取り
@@ -57,22 +58,23 @@ export const Meeting = (props) => {
       </h5>
       <div>
         <ul className="CardList">
-          {Array.isArray(meeting.users) &&
-            meeting.users.map((data, index) => {
-              // 各値はuidでなくuserへのリファレンスであることに注意
-              return (
-                <li key={index}>
-                  <div>
+          {Array.isArray(meeting.users) && (
+            <Grid container>
+              {meeting.users.map((data, index) => {
+                // 各値はuidでなくuserへのリファレンスであることに注意
+                return (
+                  <Grid item m={3} key={index}>
                     {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}
                     <Profile
                       userRef={data}
                       meetingId={meetingId}
                       rmUserFromList={rmUserFromList}
                     />
-                  </div>
-                </li>
-              );
-            })}
+                  </Grid>
+                );
+              })}
+            </Grid>
+          )}
         </ul>
       </div>
     </div>
