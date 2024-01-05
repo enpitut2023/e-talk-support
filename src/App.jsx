@@ -1,4 +1,5 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import "./App.css";
 import { Meeting } from "./components/Meeting";
 import { EnterMeeting } from "./components/EnterMeeting";
@@ -6,6 +7,7 @@ import { MakeMeeting } from "./components/MakeMeeting";
 
 const App = () => {
   const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(["meetings"]);
 
   const goTop = () => {
     navigate("/");
@@ -23,6 +25,21 @@ const App = () => {
           path="/"
           element={
             <div>
+              <div>
+                参加しているユーザールーム
+                {cookies.meetings &&
+                  cookies.meetings.map((meeting) => {
+                    return (
+                      <div key={meeting.id}>
+                        <div>{meeting.name}</div>
+                        <Link to={`/${meeting.id}`}>
+                          {`${window.location.origin}/${meeting.id}`}
+                        </Link>
+                      </div>
+                    );
+                  })}
+                <br />
+              </div>
               <EnterMeeting />
               <br />
               <br />
