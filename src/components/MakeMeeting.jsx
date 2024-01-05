@@ -45,7 +45,7 @@ export const MakeMeeting = (props) => {
       e-talk IDの新規生成はこちら
       <form onSubmit={handleSubmit}>
         <label>
-          会議名：
+          会議名（必須）：
           <input
             type="text"
             name="name"
@@ -55,7 +55,7 @@ export const MakeMeeting = (props) => {
         </label>
         <br />
         <label>
-          会議URL：
+          会議URL（任意）：
           <input
             type="text"
             name="url"
