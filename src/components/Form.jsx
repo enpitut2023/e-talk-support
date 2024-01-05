@@ -83,7 +83,13 @@ export const Form = (props) => {
       <form onSubmit={handleSubmit}>
         <label>
           名前：
-          <input type="text" name="name" className="form-val" ref={nameRef} />
+          <input
+            type="text"
+            name="name"
+            className="form-val"
+            ref={nameRef}
+            required
+          />
         </label>
         <br />
         <label>
