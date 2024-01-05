@@ -18,6 +18,7 @@ export const Meeting = (props) => {
 
   // ユーザーリストからユーザーを追加・削除する関数、子コンポーネントにて利用
   const addUserToList = (user) => {
+    setMeeting({});
     const meetingDocRef = doc(db, "meetings", meetingId);
     getDoc(meetingDocRef).then((doc) => {
       setMeeting(doc.data());
@@ -25,6 +26,7 @@ export const Meeting = (props) => {
   };
 
   const rmUserFromList = (user) => {
+    setMeeting({});
     const meetingDocRef = doc(db, "meetings", meetingId);
     getDoc(meetingDocRef).then((doc) => {
       setMeeting(doc.data());
