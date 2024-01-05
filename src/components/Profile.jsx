@@ -9,7 +9,7 @@ import {
   increment,
 } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import { Grid, Card } from "@mui/material";
+import { Card } from "@mui/material";
 
 export const Profile = (props) => {
   const rmUserFromList = props.rmUserFromList; // 親コンポネントの更新の為の関数の受け取り
@@ -53,63 +53,58 @@ export const Profile = (props) => {
   }, []);
 
   return (
-    <Grid>
-      <Card>
-        {userData !== undefined && (
+    <Card>
+      {userData !== undefined && (
+        <div>
+          {/* <img src={userImage} /> */}
           <div>
-            {/* <img src={userImage} /> */}
-            <div>
-              <div>{userData.name.value}</div>
-            </div>
-            <div>
-              <div>出身地：{userData.birthPlace.value}</div>
-              <button
-                className="small-button"
-                onClick={() => constFav("birthPlace")}
-              >
-                気になる {userData.birthPlace.fav}
-              </button>
-            </div>
-            <div>
-              <div>所属：{userData.affliation.value}</div>
-              <button
-                className="small-button"
-                onClick={() => constFav("affliation")}
-              >
-                気になる {userData.affliation.fav}
-              </button>
-            </div>
-            <div>
-              <div>趣味：{userData.hobby.value}</div>
-              <button
-                className="small-button"
-                onClick={() => constFav("hobby")}
-              >
-                気になる {userData.hobby.fav}
-              </button>
-            </div>
-            <div>
-              <div>話したいこと：{userData.talk.value}</div>
-              <button className="small-button" onClick={() => constFav("talk")}>
-                気になる {userData.talk.fav}
-              </button>
-            </div>
-            <div>
-              <div>SNS：{userData.sns.value}</div>
-              <button className="small-button" onClick={() => constFav("sns")}>
-                気になる {userData.sns.fav}
-              </button>
-            </div>
-            <div>
-              <br />
-              <button className="large-button" onClick={deleteUser}>
-                ユーザーを削除
-              </button>
-              <br />
-            </div>
+            <div>{userData.name.value}</div>
           </div>
-        )}
-      </Card>
-    </Grid>
+          <div>
+            <div>出身地：{userData.birthPlace.value}</div>
+            <button
+              className="small-button"
+              onClick={() => constFav("birthPlace")}
+            >
+              気になる {userData.birthPlace.fav}
+            </button>
+          </div>
+          <div>
+            <div>所属：{userData.affliation.value}</div>
+            <button
+              className="small-button"
+              onClick={() => constFav("affliation")}
+            >
+              気になる {userData.affliation.fav}
+            </button>
+          </div>
+          <div>
+            <div>趣味：{userData.hobby.value}</div>
+            <button className="small-button" onClick={() => constFav("hobby")}>
+              気になる {userData.hobby.fav}
+            </button>
+          </div>
+          <div>
+            <div>話したいこと：{userData.talk.value}</div>
+            <button className="small-button" onClick={() => constFav("talk")}>
+              気になる {userData.talk.fav}
+            </button>
+          </div>
+          <div>
+            <div>SNS：{userData.sns.value}</div>
+            <button className="small-button" onClick={() => constFav("sns")}>
+              気になる {userData.sns.fav}
+            </button>
+          </div>
+          <div>
+            <br />
+            <button className="large-button" onClick={deleteUser}>
+              ユーザーを削除
+            </button>
+            <br />
+          </div>
+        </div>
+      )}
+    </Card>
   );
 };
