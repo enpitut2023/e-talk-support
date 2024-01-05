@@ -46,7 +46,7 @@ export const Meeting = (props) => {
   return (
     <div>
       <div>{meeting.name}</div>
-      <div>{meeting.url}</div>
+      <a href={meeting.url}>{meeting.url}</a>
       <hr></hr>
       <Form meetingId={meetingId} addUserToList={addUserToList} />
       <h5>
@@ -74,7 +74,6 @@ export const Meeting = (props) => {
               );
             })}
         </ul>
-        ;
       </div>
     </div>
   );
