@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { list } from "@firebase/storage";
 import { Profile } from "./Profile";
 import { Form } from "./Form";
-import { useParams } from "react-router-dom";
+import { setMeetingCookie } from "../modules/cookie";
 
 export const Meeting = (props) => {
   // const meetingId = props.meetingId; //propsの受け取り
   const { meetingId } = useParams();
 
   const [meeting, setMeeting] = useState({}); // 取得したmeetingデータの入れ物
+
+  const [cookies, setCookie, removeCookie] = useCookies(["meetings"]);
 
   // ユーザーリストからユーザーを追加・削除する関数、子コンポーネントにて利用
   const addUserToList = (newUser) => {
@@ -36,6 +41,8 @@ export const Meeting = (props) => {
     const meetingDocRef = doc(db, "meetings", meetingId);
     getDoc(meetingDocRef).then((doc) => {
       setMeeting(doc.data());
+
+      setMeetingCookie(cookies, setCookie, meetingId, doc.data().name);
     });
   }, []);
 
@@ -48,7 +55,7 @@ export const Meeting = (props) => {
           meeting.users.map((data, index) => {
             // 各値はuidでなくuserへのリファレンスであることに注意
             return (
-              <ul class="CardList">
+              <ul className="CardList" key={index}>
                 <li>
                   <div key={index}>
                     {/* 一意なkeyを渡さないとWarningでる。なぜかは知らん */}

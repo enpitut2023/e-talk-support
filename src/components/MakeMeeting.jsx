@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { setMeetingCookie } from "../modules/cookie";
 
 export const MakeMeeting = (props) => {
   const meetingCollectionRef = collection(db, "meetings");
 
   const [meetingId, setMeetingId] = useState();
+
+  const [cookies, setCookie, removeCookie] = useCookies([]);
 
   // 各入力フィールド用のrefを作成
   const nameRef = useRef(null);
@@ -26,7 +30,9 @@ export const MakeMeeting = (props) => {
     };
 
     addDoc(meetingCollectionRef, meetingData).then((meetingRef) => {
-      setMeetingId(meetingRef._key.path.segments[1]);
+      const id = meetingRef._key.path.segments[1];
+      setMeetingId(id);
+      setMeetingCookie(cookies, setCookie, id, name);
     });
   };
 
