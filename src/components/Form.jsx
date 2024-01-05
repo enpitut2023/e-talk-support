@@ -22,6 +22,13 @@ export const Form = (props) => {
   const talkRef = useRef(null);
   const snsRef = useRef(null);
 
+  const resetForm = () => {
+    var collection = document.getElementsByClassName("form-val");
+    for (let i = 0; i < collection.length; i++) {
+      collection[i].value = "";
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault(); // フォームのデフォルト送信を防ぐ
 
@@ -60,6 +67,8 @@ export const Form = (props) => {
       },
     };
 
+    resetForm();
+
     addDoc(userCollectionRef, userData).then((userRef) => {
       updateDoc(meetingDocRef, {
         users: arrayUnion(userRef),
@@ -74,32 +83,47 @@ export const Form = (props) => {
       <form onSubmit={handleSubmit}>
         <label>
           名前：
-          <input type="text" name="name" ref={nameRef} />
+          <input type="text" name="name" className="form-val" ref={nameRef} />
         </label>
         <br />
         <label>
           出身地：
-          <input type="text" name="birthPlace" ref={birthPlaceRef} />
+          <input
+            type="text"
+            name="birthPlace"
+            className="form-val"
+            ref={birthPlaceRef}
+          />
         </label>
         <br />
         <label>
           所属：
-          <input type="text" name="affliation" ref={affliationRef} />
+          <input
+            type="text"
+            name="affliation"
+            className="form-val"
+            ref={affliationRef}
+          />
         </label>
         <br />
         <label>
           趣味：
-          <input type="text" name="hobby" ref={hobbyRef} />
+          <input type="text" name="hobby" className="form-val" ref={hobbyRef} />
         </label>
         <br />
         <label>
           話したいこと：
-          <input type="text" name="freeText" ref={talkRef} />
+          <input
+            type="text"
+            name="freeText"
+            className="form-val"
+            ref={talkRef}
+          />
         </label>
         <br />
         <label>
           SNS：
-          <input type="text" name="sns" ref={snsRef} />
+          <input type="text" name="sns" className="form-val" ref={snsRef} />
         </label>
         <input type="submit" value="Submit" />
       </form>
