@@ -64,7 +64,7 @@ export const Profile = (props) => {
             <div>
               <div>出身地：{userData.birthPlace.value}</div>
               <button
-                class="small-button"
+                className="small-button"
                 onClick={() => constFav("birthPlace")}
               >
                 気になる {userData.birthPlace.fav}
@@ -73,7 +73,7 @@ export const Profile = (props) => {
             <div>
               <div>所属：{userData.affliation.value}</div>
               <button
-                class="small-button"
+                className="small-button"
                 onClick={() => constFav("affliation")}
               >
                 気になる {userData.affliation.fav}
@@ -81,25 +81,28 @@ export const Profile = (props) => {
             </div>
             <div>
               <div>趣味：{userData.hobby.value}</div>
-              <button class="small-button" onClick={() => constFav("hobby")}>
+              <button
+                className="small-button"
+                onClick={() => constFav("hobby")}
+              >
                 気になる {userData.hobby.fav}
               </button>
             </div>
             <div>
               <div>話したいこと：{userData.talk.value}</div>
-              <button class="small-button" onClick={() => constFav("talk")}>
+              <button className="small-button" onClick={() => constFav("talk")}>
                 気になる {userData.talk.fav}
               </button>
             </div>
             <div>
               <div>SNS：{userData.sns.value}</div>
-              <button class="small-button" onClick={() => constFav("sns")}>
+              <button className="small-button" onClick={() => constFav("sns")}>
                 気になる {userData.sns.fav}
               </button>
             </div>
             <div>
               <br />
-              <button class="large-button" Click={deleteUser}>
+              <button className="large-button" onClick={deleteUser}>
                 ユーザーを削除
               </button>
               <br />
