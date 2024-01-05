@@ -51,6 +51,7 @@ export const MakeMeeting = (props) => {
             name="name"
             ref={nameRef}
             placeholder="例：◯◯社　インターンシップ内定懇親会"
+            required
           />
         </label>
         <br />
