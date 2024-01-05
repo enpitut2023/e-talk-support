@@ -50,6 +50,14 @@ export const Meeting = (props) => {
     <div>
       <div>{meeting.name}</div>
       <div>{meeting.url}</div>
+      <hr></hr>
+      <Form meetingId={meetingId} addUserToList={addUserToList} />
+      <h5>
+        一度登録したプロフィール情報は変更できません。
+        <br />
+        登録情報を修正したい場合は、 「ユーザを削除」をクリックし、
+        入力フォームから再度情報を登録してください。
+      </h5>
       <div>
         {Array.isArray(meeting.users) &&
           meeting.users.map((data, index) => {
@@ -70,8 +78,6 @@ export const Meeting = (props) => {
             );
           })}
       </div>
-      <hr></hr>
-      <Form meetingId={meetingId} addUserToList={addUserToList} />
     </div>
   );
 };
