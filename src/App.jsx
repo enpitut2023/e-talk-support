@@ -4,6 +4,7 @@ import "./App.css";
 import { Meeting } from "./components/Meeting";
 import { EnterMeeting } from "./components/EnterMeeting";
 import { MakeMeeting } from "./components/MakeMeeting";
+import Favicon from "react-favicon";
 
 const App = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const App = () => {
 
   return (
     <div>
+      <Favicon url="public/e-talklogo.png"></Favicon>
       <h1 onClick={goTop}>e-talk support</h1>
       <h5>
         e-talkサポートは、ミーティングの開始前に参加者のプロフィールを確認できるサービスです
