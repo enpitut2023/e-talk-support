@@ -8,6 +8,8 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 
+import "../App.css";
+
 export const Form = (props) => {
   // 親コンポネントのユーザーリストを更新のための関数を受け取り
   const addUserToList = props.addUserToList;
@@ -82,22 +84,26 @@ export const Form = (props) => {
       あなたのユーザー情報を登録
       <form onSubmit={handleSubmit}>
         <label>
-          名前：
-          <input type="text" name="name" className="form-val" ref={nameRef} />
+          <span class="form-item">名前</span>：
+          <span class="input-item">
+            <input type="text" name="name" className="form-val" ref={nameRef} />
+          </span>
         </label>
         <br />
         <label>
-          出身地：
-          <input
-            type="text"
-            name="birthPlace"
-            className="form-val"
-            ref={birthPlaceRef}
-          />
+          <span class="form-item">出身地</span>：
+          <span class="input-item">
+            <input
+              type="text"
+              name="birthPlace"
+              className="form-val"
+              ref={birthPlaceRef}
+            />
+          </span>
         </label>
         <br />
         <label>
-          所属：
+          <span class="form-item">所属</span>：
           <input
             type="text"
             name="affliation"
@@ -107,12 +113,12 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          趣味：
+          <span class="form-item">趣味</span>：
           <input type="text" name="hobby" className="form-val" ref={hobbyRef} />
         </label>
         <br />
         <label>
-          話したいこと：
+          <span class="form-item">話したいこと</span>：
           <input
             type="text"
             name="freeText"
@@ -122,10 +128,11 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          SNS：
+          <span class="form-item">SNS</span>：
           <input type="text" name="sns" className="form-val" ref={snsRef} />
         </label>
-        <input type="submit" value="Submit" />
+        <br />
+        <input type="submit" value="Submit" class="submit-button" />
       </form>
     </div>
   );
