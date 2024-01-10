@@ -20,11 +20,15 @@ export const Profile = (props) => {
   // const [userImage, setUserImage] = useState({});
 
   const deleteUser = () => {
-    updateDoc(meetingDocRef, {
-      users: arrayRemove(userRef),
-    });
-    deleteDoc(userRef);
-    rmUserFromList(userRef);
+    if (
+      window.confirm("自分以外のカードは削除してはいけません\n削除しますか?")
+    ) {
+      updateDoc(meetingDocRef, {
+        users: arrayRemove(userRef),
+      });
+      deleteDoc(userRef);
+      rmUserFromList(userRef);
+    }
   };
 
   //いいねを押したときの関数
