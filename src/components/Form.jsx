@@ -132,7 +132,7 @@ export const Form = (props) => {
           <input type="text" name="sns" className="form-val" ref={snsRef} />
         </label>
         <br />
-        <input type="submit" value="Submit" class="submit-button" />
+        <input type="submit" value="登録" class="submit-button" />
       </form>
     </div>
   );
