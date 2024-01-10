@@ -29,6 +29,13 @@ export const MakeMeeting = (props) => {
       users: [],
     };
 
+    const confirmMsg = `会議名 : ${meetingData.name}\n会議url : ${meetingData.url}\n`;
+    if (
+      !window.confirm(confirmMsg + "この内容でメンバールームを作成しますか?")
+    ) {
+      return;
+    }
+
     addDoc(meetingCollectionRef, meetingData).then((meetingRef) => {
       const id = meetingRef._key.path.segments[1];
       setMeetingId(id);

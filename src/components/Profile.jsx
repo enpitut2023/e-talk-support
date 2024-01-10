@@ -21,14 +21,15 @@ export const Profile = (props) => {
 
   const deleteUser = () => {
     if (
-      window.confirm("自分以外のカードは削除してはいけません\n削除しますか?")
+      !window.confirm("自分以外のカードは削除してはいけません\n削除しますか?")
     ) {
-      updateDoc(meetingDocRef, {
-        users: arrayRemove(userRef),
-      });
-      deleteDoc(userRef);
-      rmUserFromList(userRef);
+      return;
     }
+    updateDoc(meetingDocRef, {
+      users: arrayRemove(userRef),
+    });
+    deleteDoc(userRef);
+    rmUserFromList(userRef);
   };
 
   //いいねを押したときの関数
