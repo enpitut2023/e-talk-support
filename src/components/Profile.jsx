@@ -54,7 +54,7 @@ export const Profile = (props) => {
 
   return (
     <Card>
-      <Box p={2} width={300}>
+      <Box p={2} width={230}>
         <CardContent>
           {userData !== undefined && (
             <div>
