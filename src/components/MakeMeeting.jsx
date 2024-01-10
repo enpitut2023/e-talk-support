@@ -49,7 +49,7 @@ export const MakeMeeting = (props) => {
 
   return (
     <div>
-      e-talk IDの新規生成はこちら
+      メンバールームの新規生成はこちら
       <form onSubmit={handleSubmit}>
         <label>
           会議名（必須）：

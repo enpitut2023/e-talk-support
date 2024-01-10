@@ -26,7 +26,7 @@ const App = () => {
           element={
             <div>
               <div>
-                参加しているユーザールーム
+                参加しているメンバールーム
                 {cookies.meetings &&
                   cookies.meetings.map((meeting) => {
                     return (
