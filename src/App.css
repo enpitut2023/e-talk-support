@@ -48,3 +48,17 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px 6%;
 }
+
+.form-item {
+  display: inline-block;
+  text-align: right;
+  width: 100px;
+}
+
+.input-item {
+  display: inline-block;
+}
+
+.submit-button {
+  cursor: pointer;
+}
