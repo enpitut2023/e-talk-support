@@ -58,8 +58,8 @@ export const Profile = (props) => {
   }, []);
 
   return (
-    <Card>
-      <Box p={2} width={230}>
+    <Card className="card">
+      <Box p={2} width={230} padding={1}>
         <CardContent>
           {userData !== undefined && (
             <div>

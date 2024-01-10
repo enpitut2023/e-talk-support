@@ -21,6 +21,7 @@ const App = () => {
       <h5>
         e-talkサポートは、ミーティングの開始前に参加者のプロフィールを確認できるサービスです
       </h5>
+      <hr />
       <Routes>
         <Route
           exact
