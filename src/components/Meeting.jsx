@@ -46,9 +46,10 @@ export const Meeting = (props) => {
 
   return (
     <div>
-      <div>{meeting.name}</div>
+      <h4>{meeting.name}</h4>
       <a href={meeting.url}>{meeting.url}</a>
-      <hr></hr>
+      <br />
+      <br />
       <Form meetingId={meetingId} addUserToList={addUserToList} />
       <h5>
         一度登録したプロフィール情報は変更できません。

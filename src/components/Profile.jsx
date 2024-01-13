@@ -22,6 +22,11 @@ export const Profile = (props) => {
   // const [userImage, setUserImage] = useState({});
 
   const deleteUser = () => {
+    if (
+      !window.confirm("自分以外のカードは削除してはいけません\n削除しますか?")
+    ) {
+      return;
+    }
     updateDoc(meetingDocRef, {
       users: arrayRemove(userRef),
     });
@@ -55,7 +60,7 @@ export const Profile = (props) => {
   }, []);
 
   return (
-    <Card>
+    <Card className="card">
       <Box p={2} width={230} padding={1}>
         <CardContent>
           {userData !== undefined && (
