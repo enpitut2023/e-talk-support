@@ -1,0 +1,26 @@
+.table-content-left {
+  width: 50px;
+}
+
+.table-content-center {
+  width: 160px;
+}
+
+.table-content-right {
+  width: 35px;
+}
+
+.kininaru-button {
+  width: 20px;
+}
+
+.item-title {
+  border-radius: 10px 10px 10px 10px;
+  background-color: gray;
+  color: white;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: small;
+}

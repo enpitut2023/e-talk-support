@@ -10,6 +10,8 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import { Card, CardContent, Box } from "@mui/material";
+import "./Profile.css";
+import kininaru from "../assets/kininaru.png";
 
 export const Profile = (props) => {
   const rmUserFromList = props.rmUserFromList; // 親コンポネントの更新の為の関数の受け取り
@@ -54,7 +56,7 @@ export const Profile = (props) => {
 
   return (
     <Card>
-      <Box p={2} width={230}>
+      <Box p={2} width={230} padding={1}>
         <CardContent>
           {userData !== undefined && (
             <div>
@@ -62,51 +64,122 @@ export const Profile = (props) => {
               <div>
                 <div>{userData.name.value}</div>
               </div>
-              <div>
-                <div>出身地：{userData.birthPlace.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("birthPlace")}
-                >
-                  気になる {userData.birthPlace.fav}
-                </button>
-              </div>
-              <div>
-                <div>所属：{userData.affliation.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("affliation")}
-                >
-                  気になる {userData.affliation.fav}
-                </button>
-              </div>
-              <div>
-                <div>趣味：{userData.hobby.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("hobby")}
-                >
-                  気になる {userData.hobby.fav}
-                </button>
-              </div>
-              <div>
-                <div>話したいこと：{userData.talk.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("talk")}
-                >
-                  気になる {userData.talk.fav}
-                </button>
-              </div>
-              <div>
-                <div>SNS：{userData.sns.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("sns")}
-                >
-                  気になる {userData.sns.fav}
-                </button>
-              </div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="table-content-left">
+                      <div className="item-title">
+                        <b>出身</b>
+                      </div>
+                    </td>
+                    <td className="table-content-center">
+                      {userData.birthPlace.value}
+                    </td>
+                    <td className="table-content-right">
+                      <button
+                        className="small-button"
+                        onClick={() => constFav("birthPlace")}
+                      >
+                        <img src={kininaru} className="kininaru-button"></img>
+                        {userData.birthPlace.fav}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="table-content-left">
+                      <div className="item-title">
+                        <b>所属</b>
+                      </div>
+                    </td>
+                    <td className="table-content-center">
+                      {userData.affliation.value}
+                    </td>
+                    <td className="table-content-right">
+                      <button
+                        className="small-button"
+                        onClick={() => constFav("affliation")}
+                      >
+                        <img src={kininaru} className="kininaru-button"></img>
+                        {userData.affliation.fav}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="table-content-left">
+                      <div className="item-title">
+                        <b>趣味</b>
+                      </div>
+                    </td>
+                    <td className="table-content-center">
+                      {userData.hobby.value}
+                    </td>
+                    <td className="table-content-right">
+                      <button
+                        className="small-button"
+                        onClick={() => constFav("hobby")}
+                      >
+                        <img src={kininaru} className="kininaru-button"></img>
+                        {userData.hobby.fav}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="table-content-left">
+                      <div className="item-title">
+                        <b>話題</b>
+                      </div>
+                    </td>
+                    <td className="table-content-center">
+                      {userData.talk.value}
+                    </td>
+                    <td className="table-content-right">
+                      <button
+                        className="small-button"
+                        onClick={() => constFav("talk")}
+                      >
+                        <img src={kininaru} className="kininaru-button"></img>
+                        {userData.talk.fav}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="table-content-left">
+                      <div className="item-title">
+                        <b>SNS</b>
+                      </div>
+                    </td>
+                    <td className="table-content-center">
+                      {userData.sns.value}
+                    </td>
+                    <td className="table-content-right">
+                      <button
+                        className="small-button"
+                        onClick={() => constFav("sns")}
+                      >
+                        <img src={kininaru} className="kininaru-button"></img>
+                        {userData.sns.fav}
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <div>
                 <br />
                 <button className="large-button" onClick={deleteUser}>
