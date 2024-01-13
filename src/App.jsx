@@ -15,12 +15,14 @@ const App = () => {
 
   return (
     <div>
-      <Favicon url="public/e-talklogo.png"></Favicon>
-      <h1 onClick={goTop}>e-talk support</h1>
-      <h5>
-        e-talkサポートは、ミーティングの開始前に参加者のプロフィールを確認できるサービスです
-      </h5>
-      <hr />
+      <Favicon url="/e-talklogo.png"></Favicon>
+      <div>
+        <h1 onClick={goTop}>e-talk support</h1>
+        <h5>
+          e-talkサポートは、ミーティングの開始前に参加者のプロフィールを確認できるサービスです
+        </h5>
+        <hr />
+      </div>
       <Routes>
         <Route
           exact
