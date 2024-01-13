@@ -74,8 +74,9 @@ export const Form = (props) => {
     addDoc(userCollectionRef, userData).then((userRef) => {
       updateDoc(meetingDocRef, {
         users: arrayUnion(userRef),
+      }).then(() => {
+        addUserToList(userRef);
       });
-      addUserToList(userRef);
     });
   };
 

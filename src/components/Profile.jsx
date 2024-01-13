@@ -9,7 +9,17 @@ import {
   increment,
 } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import { Card, CardContent, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Box,
+  CardMedia,
+  CardHeader,
+  Avatar,
+  IconButton,
+  Button,
+} from "@mui/material";
+import { red } from "@mui/material/colors";
 import "./Profile.css";
 import kininaru from "../assets/kininaru.png";
 
@@ -59,16 +69,27 @@ export const Profile = (props) => {
     });
   }, []);
 
+  const FavButton = (props) => {
+    return (
+      <Button
+        variant="outlined"
+        sx={{ padding: 0 }}
+        onClick={() => constFav(props.field)}
+      >
+        <img src={kininaru} className="kininaru-button"></img>
+        {props.fav}
+      </Button>
+    );
+  };
+
   return (
     <Card className="card">
-      <Box p={2} width={230} padding={1}>
-        <CardContent>
-          {userData !== undefined && (
+      {userData !== undefined && (
+        <Box p={2} width={300} padding={1}>
+          <CardHeader title={userData.name.value} />
+          <CardContent>
             <div>
               {/* <img src={userImage} /> */}
-              <div>
-                <div>{userData.name.value}</div>
-              </div>
               <table>
                 <tbody>
                   <tr>
@@ -81,13 +102,10 @@ export const Profile = (props) => {
                       {userData.birthPlace.value}
                     </td>
                     <td className="table-content-right">
-                      <button
-                        className="small-button"
-                        onClick={() => constFav("birthPlace")}
-                      >
-                        <img src={kininaru} className="kininaru-button"></img>
-                        {userData.birthPlace.fav}
-                      </button>
+                      <FavButton
+                        fav={userData.birthPlace.fav}
+                        field={"birthPlace"}
+                      ></FavButton>
                     </td>
                   </tr>
                 </tbody>
@@ -104,13 +122,10 @@ export const Profile = (props) => {
                       {userData.affliation.value}
                     </td>
                     <td className="table-content-right">
-                      <button
-                        className="small-button"
-                        onClick={() => constFav("affliation")}
-                      >
-                        <img src={kininaru} className="kininaru-button"></img>
-                        {userData.affliation.fav}
-                      </button>
+                      <FavButton
+                        fav={userData.affliation.fav}
+                        field={"affliation"}
+                      ></FavButton>
                     </td>
                   </tr>
                 </tbody>
@@ -127,13 +142,10 @@ export const Profile = (props) => {
                       {userData.hobby.value}
                     </td>
                     <td className="table-content-right">
-                      <button
-                        className="small-button"
-                        onClick={() => constFav("hobby")}
-                      >
-                        <img src={kininaru} className="kininaru-button"></img>
-                        {userData.hobby.fav}
-                      </button>
+                      <FavButton
+                        fav={userData.hobby.fav}
+                        field={"hobby"}
+                      ></FavButton>
                     </td>
                   </tr>
                 </tbody>
@@ -151,17 +163,15 @@ export const Profile = (props) => {
                       {userData.talk.value}
                     </td>
                     <td className="table-content-right">
-                      <button
-                        className="small-button"
-                        onClick={() => constFav("talk")}
-                      >
-                        <img src={kininaru} className="kininaru-button"></img>
-                        {userData.talk.fav}
-                      </button>
+                      <FavButton
+                        fav={userData.talk.fav}
+                        field={"talk"}
+                      ></FavButton>
                     </td>
                   </tr>
                 </tbody>
               </table>
+
               <table>
                 <tbody>
                   <tr>
@@ -174,28 +184,30 @@ export const Profile = (props) => {
                       {userData.sns.value}
                     </td>
                     <td className="table-content-right">
-                      <button
-                        className="small-button"
-                        onClick={() => constFav("sns")}
-                      >
-                        <img src={kininaru} className="kininaru-button"></img>
-                        {userData.sns.fav}
-                      </button>
+                      <FavButton
+                        fav={userData.sns.fav}
+                        field={"sns"}
+                      ></FavButton>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div>
                 <br />
-                <button className="large-button" onClick={deleteUser}>
+                <Button
+                  variant="contained"
+                  className="large-button"
+                  color="inherit"
+                  onClick={deleteUser}
+                >
                   ユーザーを削除
-                </button>
+                </Button>
                 <br />
               </div>
             </div>
-          )}
-        </CardContent>
-      </Box>
+          </CardContent>
+        </Box>
+      )}
     </Card>
   );
 };
