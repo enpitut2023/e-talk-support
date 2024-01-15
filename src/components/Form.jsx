@@ -25,7 +25,7 @@ export const Form = (props) => {
   const snsRef = useRef(null);
 
   const resetForm = () => {
-    var collection = document.getElementsByClassName("form-val");
+    const collection = document.getElementsByClassName("form-val");
     for (let i = 0; i < collection.length; i++) {
       collection[i].value = "";
     }
@@ -84,15 +84,21 @@ export const Form = (props) => {
       あなたのユーザー情報を登録
       <form onSubmit={handleSubmit}>
         <label>
-          <span class="form-item">名前</span>：
-          <span class="input-item">
-            <input type="text" name="name" className="form-val" ref={nameRef} />
+          <span className="form-item">名前</span>：
+          <span className="input-item">
+            <input
+              type="text"
+              name="name"
+              className="form-val"
+              ref={nameRef}
+              required
+            />
           </span>
         </label>
         <br />
         <label>
-          <span class="form-item">出身地</span>：
-          <span class="input-item">
+          <span className="form-item">出身地</span>：
+          <span className="input-item">
             <input
               type="text"
               name="birthPlace"
@@ -103,7 +109,7 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          <span class="form-item">所属</span>：
+          <span className="form-item">所属</span>：
           <input
             type="text"
             name="affliation"
@@ -113,12 +119,12 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          <span class="form-item">趣味</span>：
+          <span className="form-item">趣味</span>：
           <input type="text" name="hobby" className="form-val" ref={hobbyRef} />
         </label>
         <br />
         <label>
-          <span class="form-item">話したいこと</span>：
+          <span className="form-item">話したいこと</span>：
           <input
             type="text"
             name="freeText"
@@ -128,11 +134,13 @@ export const Form = (props) => {
         </label>
         <br />
         <label>
-          <span class="form-item">SNS</span>：
+          <span className="form-item">SNS</span>：
           <input type="text" name="sns" className="form-val" ref={snsRef} />
         </label>
         <br />
-        <input type="submit" value="登録" class="submit-button" />
+        <button type="submit" className="submit-button">
+          登録
+        </button>
       </form>
     </div>
   );

@@ -72,7 +72,7 @@ export const MakeMeeting = (props) => {
           />
         </label>
         <br />
-        <input type="submit" value="作成" />
+        <button type="submit">作成</button>
       </form>
       {meetingId && (
         <div>
