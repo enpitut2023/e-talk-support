@@ -88,122 +88,113 @@ export const Profile = (props) => {
         <Box p={2} width={300} padding={1}>
           <CardHeader title={userData.name.value} />
           <CardContent>
+            {/* <img src={userImage} /> */}
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>出身</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.birthPlace.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.birthPlace.fav}
+                      field={"birthPlace"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>所属</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.affliation.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.affliation.fav}
+                      field={"affliation"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>趣味</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.hobby.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.hobby.fav}
+                      field={"hobby"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>話題</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.talk.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.talk.fav}
+                      field={"talk"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>SNS</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">{userData.sns.value}</td>
+                  <td className="table-content-right">
+                    <FavButton fav={userData.sns.fav} field={"sns"}></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <div>
-              {/* <img src={userImage} /> */}
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="table-content-left">
-                      <div className="item-title">
-                        <b>出身</b>
-                      </div>
-                    </td>
-                    <td className="table-content-center">
-                      {userData.birthPlace.value}
-                    </td>
-                    <td className="table-content-right">
-                      <FavButton
-                        fav={userData.birthPlace.fav}
-                        field={"birthPlace"}
-                      ></FavButton>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="table-content-left">
-                      <div className="item-title">
-                        <b>所属</b>
-                      </div>
-                    </td>
-                    <td className="table-content-center">
-                      {userData.affliation.value}
-                    </td>
-                    <td className="table-content-right">
-                      <FavButton
-                        fav={userData.affliation.fav}
-                        field={"affliation"}
-                      ></FavButton>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="table-content-left">
-                      <div className="item-title">
-                        <b>趣味</b>
-                      </div>
-                    </td>
-                    <td className="table-content-center">
-                      {userData.hobby.value}
-                    </td>
-                    <td className="table-content-right">
-                      <FavButton
-                        fav={userData.hobby.fav}
-                        field={"hobby"}
-                      ></FavButton>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="table-content-left">
-                      <div className="item-title">
-                        <b>話題</b>
-                      </div>
-                    </td>
-                    <td className="table-content-center">
-                      {userData.talk.value}
-                    </td>
-                    <td className="table-content-right">
-                      <FavButton
-                        fav={userData.talk.fav}
-                        field={"talk"}
-                      ></FavButton>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="table-content-left">
-                      <div className="item-title">
-                        <b>SNS</b>
-                      </div>
-                    </td>
-                    <td className="table-content-center">
-                      {userData.sns.value}
-                    </td>
-                    <td className="table-content-right">
-                      <FavButton
-                        fav={userData.sns.fav}
-                        field={"sns"}
-                      ></FavButton>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div>
-                <br />
-                <Button
-                  variant="contained"
-                  className="large-button"
-                  color="inherit"
-                  onClick={deleteUser}
-                >
-                  ユーザーを削除
-                </Button>
-                <br />
-              </div>
+              <br />
+              <Button
+                variant="contained"
+                className="large-button"
+                color="inherit"
+                onClick={deleteUser}
+              >
+                ユーザーを削除
+              </Button>
+              <br />
             </div>
           </CardContent>
         </Box>
