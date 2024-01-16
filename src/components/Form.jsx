@@ -10,6 +10,16 @@ import {
 
 import "../App.css";
 
+import { Button, FormControl } from "@mui/base";
+import {
+  TextField,
+  Box,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 export const Form = (props) => {
   // 親コンポネントのユーザーリストを更新のための関数を受け取り
   const addUserToList = props.addUserToList;
@@ -79,61 +89,52 @@ export const Form = (props) => {
     });
   };
 
+  const FormItem = (props) => {
+    return (
+      <div>
+        <TextField
+          type="text"
+          size="small"
+          margin="normal"
+          label={props.label}
+          variant="filled"
+          inputRef={props.valueRef}
+          fullWidth
+        />
+      </div>
+    );
+  };
+
   return (
-    <div>
-      あなたのユーザー情報を登録
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span class="form-item">名前</span>：
-          <span class="input-item">
-            <input type="text" name="name" className="form-val" ref={nameRef} />
-          </span>
-        </label>
-        <br />
-        <label>
-          <span class="form-item">出身地</span>：
-          <span class="input-item">
-            <input
-              type="text"
-              name="birthPlace"
-              className="form-val"
-              ref={birthPlaceRef}
-            />
-          </span>
-        </label>
-        <br />
-        <label>
-          <span class="form-item">所属</span>：
-          <input
-            type="text"
-            name="affliation"
-            className="form-val"
-            ref={affliationRef}
-          />
-        </label>
-        <br />
-        <label>
-          <span class="form-item">趣味</span>：
-          <input type="text" name="hobby" className="form-val" ref={hobbyRef} />
-        </label>
-        <br />
-        <label>
-          <span class="form-item">話したいこと</span>：
-          <input
-            type="text"
-            name="freeText"
-            className="form-val"
-            ref={talkRef}
-          />
-        </label>
-        <br />
-        <label>
-          <span class="form-item">SNS</span>：
-          <input type="text" name="sns" className="form-val" ref={snsRef} />
-        </label>
-        <br />
-        <input type="submit" value="登録" class="submit-button" />
-      </form>
-    </div>
+    <Box width={430}>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          あなたのユーザー情報を登録
+        </AccordionSummary>
+        <AccordionDetails>
+          <form onSubmit={handleSubmit}>
+            <FormControl variant="standard">
+              <FormItem label="名前" valueRef={nameRef}></FormItem>
+              <FormItem label="出身地" valueRef={birthPlaceRef}></FormItem>
+              <FormItem label="所属" valueRef={affliationRef}></FormItem>
+              <FormItem label="趣味" valueRef={hobbyRef}></FormItem>
+              <FormItem label="話したいこと" valueRef={talkRef}></FormItem>
+              <FormItem label="SNS" valueRef={snsRef}></FormItem>
+              <h5>
+                一度登録したプロフィール情報は変更できません。
+                <br />
+                登録情報を修正したい場合は、 「ユーザを削除」をクリックし、
+                入力フォームから再度情報を登録してください。
+              </h5>
+              <Button type="submit">登録</Button>
+            </FormControl>
+          </form>
+        </AccordionDetails>
+      </Accordion>
+    </Box>
   );
 };
