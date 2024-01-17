@@ -74,6 +74,7 @@ export const Profile = (props) => {
       <Button
         variant="outlined"
         sx={{ padding: 0 }}
+        color="warning"
         onClick={() => constFav(props.field)}
       >
         <img src={kininaru} className="kininaru-button"></img>
