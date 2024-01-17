@@ -21,11 +21,11 @@ const App = () => {
       <Favicon url={logo}></Favicon>
       <div>
         <AppBar position="fixed" color="inherit">
-          <Box sx={{ margin: 1 }} onClick={goTop}>
+          <Box sx={{ margin: 1, textAlign: "center" }} onClick={goTop}>
             <Stack direction="row">
-              <img src={logo} height="40px" />
+              <img src={logo} height="60px" />
               <Typography
-                variant="h4"
+                variant="h3"
                 component="div"
                 sx={{
                   flexGrow: 1,
