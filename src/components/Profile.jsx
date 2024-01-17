@@ -9,7 +9,19 @@ import {
   increment,
 } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import { Card, CardContent, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Box,
+  CardMedia,
+  CardHeader,
+  Avatar,
+  IconButton,
+  Button,
+} from "@mui/material";
+import { red } from "@mui/material/colors";
+import "./Profile.css";
+import kininaru from "../assets/kininaru.png";
 
 export const Profile = (props) => {
   const rmUserFromList = props.rmUserFromList; // 親コンポネントの更新の為の関数の受け取り
@@ -57,72 +69,137 @@ export const Profile = (props) => {
     });
   }, []);
 
+  const FavButton = (props) => {
+    return (
+      <Button
+        variant="outlined"
+        sx={{ padding: 0 }}
+        color="warning"
+        onClick={() => constFav(props.field)}
+      >
+        <img src={kininaru} className="kininaru-button"></img>
+        {props.fav}
+      </Button>
+    );
+  };
+
   return (
     <Card className="card">
-      <Box p={2} width={230} padding={1}>
-        <CardContent>
-          {userData !== undefined && (
+      {userData !== undefined && (
+        <Box p={2} width={300} padding={1}>
+          <CardHeader title={userData.name.value} />
+          <CardContent>
+            {/* <img src={userImage} /> */}
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>出身</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.birthPlace.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.birthPlace.fav}
+                      field={"birthPlace"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>所属</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.affliation.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.affliation.fav}
+                      field={"affliation"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>趣味</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.hobby.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.hobby.fav}
+                      field={"hobby"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>話題</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">
+                    {userData.talk.value}
+                  </td>
+                  <td className="table-content-right">
+                    <FavButton
+                      fav={userData.talk.fav}
+                      field={"talk"}
+                    ></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-content-left">
+                    <div className="item-title">
+                      <b>SNS</b>
+                    </div>
+                  </td>
+                  <td className="table-content-center">{userData.sns.value}</td>
+                  <td className="table-content-right">
+                    <FavButton fav={userData.sns.fav} field={"sns"}></FavButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <div>
-              {/* <img src={userImage} /> */}
-              <div>
-                <div>{userData.name.value}</div>
-              </div>
-              <div>
-                <div>出身地：{userData.birthPlace.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("birthPlace")}
-                >
-                  気になる {userData.birthPlace.fav}
-                </button>
-              </div>
-              <div>
-                <div>所属：{userData.affliation.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("affliation")}
-                >
-                  気になる {userData.affliation.fav}
-                </button>
-              </div>
-              <div>
-                <div>趣味：{userData.hobby.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("hobby")}
-                >
-                  気になる {userData.hobby.fav}
-                </button>
-              </div>
-              <div>
-                <div>話したいこと：{userData.talk.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("talk")}
-                >
-                  気になる {userData.talk.fav}
-                </button>
-              </div>
-              <div>
-                <div>SNS：{userData.sns.value}</div>
-                <button
-                  className="small-button"
-                  onClick={() => constFav("sns")}
-                >
-                  気になる {userData.sns.fav}
-                </button>
-              </div>
-              <div>
-                <br />
-                <button className="large-button" onClick={deleteUser}>
-                  ユーザーを削除
-                </button>
-                <br />
-              </div>
+              <br />
+              <Button
+                variant="contained"
+                className="large-button"
+                color="inherit"
+                onClick={deleteUser}
+              >
+                ユーザーを削除
+              </Button>
+              <br />
             </div>
-          )}
-        </CardContent>
-      </Box>
+          </CardContent>
+        </Box>
+      )}
     </Card>
   );
 };
