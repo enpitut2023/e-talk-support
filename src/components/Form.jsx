@@ -35,7 +35,7 @@ export const Form = (props) => {
   const snsRef = useRef(null);
 
   const resetForm = () => {
-    var collection = document.getElementsByClassName("form-val");
+    const collection = document.getElementsByClassName("form-val");
     for (let i = 0; i < collection.length; i++) {
       collection[i].value = "";
     }
@@ -84,8 +84,9 @@ export const Form = (props) => {
     addDoc(userCollectionRef, userData).then((userRef) => {
       updateDoc(meetingDocRef, {
         users: arrayUnion(userRef),
+      }).then(() => {
+        addUserToList(userRef);
       });
-      addUserToList(userRef);
     });
   };
 
