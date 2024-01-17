@@ -5,6 +5,9 @@ import { EnterMeeting } from "./components/EnterMeeting";
 import { MakeMeeting } from "./components/MakeMeeting";
 import { MeetingList } from "./components/MeetingList";
 import Favicon from "react-favicon";
+import logo from "../public/e-talklogo.png";
+import { AppBar, Typography, Box } from "@mui/material";
+import { Stack } from "@mui/system";
 
 const App = () => {
   const navigate = useNavigate();
@@ -15,12 +18,30 @@ const App = () => {
 
   return (
     <div>
-      <Favicon url="/e-talklogo.png"></Favicon>
+      <Favicon url={logo}></Favicon>
       <div>
-        <h1 onClick={goTop}>e-talk support</h1>
-        <h5>
+        <AppBar position="fixed" color="inherit">
+          <Box sx={{ margin: 1, textAlign: "center" }} onClick={goTop}>
+            <Stack direction="row">
+              <img src={logo} height="60px" />
+              <Typography
+                variant="h3"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  textAlign: "left",
+                  fontFamily: "Arial",
+                  fontWeight: "bold",
+                }}
+              >
+                e-talk support
+              </Typography>
+            </Stack>
+          </Box>
+        </AppBar>
+        <h4 style={{ marginTop: 80 }}>
           e-talkサポートは、ミーティングの開始前に参加者のプロフィールを確認できるサービスです
-        </h5>
+        </h4>
         <hr />
       </div>
       <Routes>
