@@ -50,13 +50,9 @@ export const Meeting = (props) => {
       <a href={meeting.url}>{meeting.url}</a>
       <br />
       <br />
-      <Form meetingId={meetingId} addUserToList={addUserToList} />
-      <h5>
-        一度登録したプロフィール情報は変更できません。
-        <br />
-        登録情報を修正したい場合は、 「ユーザを削除」をクリックし、
-        入力フォームから再度情報を登録してください。
-      </h5>
+      <center>
+        <Form meetingId={meetingId} addUserToList={addUserToList} />
+      </center>
       <div>
         <ul className="CardList">
           {Array.isArray(meeting.users) && (
