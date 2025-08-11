@@ -5,7 +5,7 @@ import { EnterMeeting } from "./components/EnterMeeting";
 import { MakeMeeting } from "./components/MakeMeeting";
 import { MeetingList } from "./components/MeetingList";
 import Favicon from "react-favicon";
-import logo from "../public/e-talklogo.png";
+import logo from "./assets/e-talklogo.png";
 import { AppBar, Typography, Box } from "@mui/material";
 import { Stack } from "@mui/system";
 
