@@ -1,11 +1,11 @@
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Meeting } from "./components/Meeting";
 import { EnterMeeting } from "./components/EnterMeeting";
 import { MakeMeeting } from "./components/MakeMeeting";
 import { MeetingList } from "./components/MeetingList";
 import Favicon from "react-favicon";
-import logo from "../public/e-talklogo.png";
+import logo from "./assets/e-talklogo.png";
 import { AppBar, Typography, Box } from "@mui/material";
 import { Stack } from "@mui/system";
 

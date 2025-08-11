@@ -19,7 +19,6 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
 import "./Profile.css";
 import kininaru from "../assets/kininaru.png";
 

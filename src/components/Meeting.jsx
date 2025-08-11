@@ -7,7 +7,7 @@ import { list } from "@firebase/storage";
 import { Profile } from "./Profile";
 import { Form } from "./Form";
 import { setMeetingCookie } from "../modules/cookie";
-import { Grid, Card } from "@mui/material";
+import { Grid } from "@mui/material";
 
 export const Meeting = (props) => {
   // const meetingId = props.meetingId; //propsの受け取り
