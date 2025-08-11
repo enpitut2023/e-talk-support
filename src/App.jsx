@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Meeting } from "./components/Meeting";
 import { EnterMeeting } from "./components/EnterMeeting";
